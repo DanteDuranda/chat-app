@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="131dp"
+        android:layout_height="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002"
+        app:srcCompat="@drawable/logover3"
+        android:contentDescription="@string/app_name" />
+
+    <EditText
+        android:id="@+id/registrationEmailField"
+        android:layout_width="288dp"
+        android:layout_height="51dp"
+        android:autofillHints="emailAddress"
+        android:background="?android:attr/windowBackground"
+        android:ems="10"
+        android:hint="@string/login_mail_hint"
+        android:inputType="textEmailAddress"
+        android:maxEms="15"
+        android:minEms="10"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26999998"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/registrationPasswordField"
+        android:layout_width="288dp"
+        android:layout_height="51dp"
+        android:autofillHints="emailAddress"
+        android:background="?android:attr/windowBackground"
+        android:ems="10"
+        android:hint="@string/login_password_hint"
+        android:inputType="textPassword"
+        android:maxEms="15"
+        android:minEms="10"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationEmailField"
+        app:layout_constraintVertical_bias="0.100000024"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/loginErrorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationPasswordField"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:backgroundTint="@color/button_backgroundTint"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="login"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="4"
+        android:shadowRadius="30"
+        android:text="@string/login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginErrorLabel"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_margin="0dp"
+        android:backgroundTint="@color/button_backgroundTint"
+        android:hapticFeedbackEnabled="true"
+        android:shadowColor="@color/black"
+        android:shadowDx="3"
+        android:shadowDy="4"
+        android:shadowRadius="30"
+        android:text="@string/go_to_registration"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="20sp"
+        android:onClick="toRegistration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationPasswordField"
+        app:layout_constraintVertical_bias="0.45"
+        />
+
+    <TextView
+        android:id="@+id/registrationMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/login_message"
+        android:textAlignment="center"
+        android:textColor="@color/information"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
