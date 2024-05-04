@@ -68,6 +68,7 @@
         android:id="@+id/loginErrorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/error"
@@ -96,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginErrorLabel"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -106,6 +107,7 @@
         android:layout_margin="0dp"
         android:backgroundTint="@color/button_backgroundTint"
         android:hapticFeedbackEnabled="true"
+        android:onClick="toRegistration"
         android:shadowColor="@color/black"
         android:shadowDx="3"
         android:shadowDy="4"
@@ -113,13 +115,11 @@
         android:text="@string/go_to_registration"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="20sp"
-        android:onClick="toRegistration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationPasswordField"
-        app:layout_constraintVertical_bias="0.45"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintVertical_bias="0.01999998" />
 
     <TextView
         android:id="@+id/registrationMessage"

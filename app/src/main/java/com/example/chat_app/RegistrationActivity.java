@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-
+        //TODO
     }
 
     public void backToLogin(View view) {
