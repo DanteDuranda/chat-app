@@ -6,11 +6,11 @@
     <string name="login">Login</string>
     <string name="go_to_registration">Create new profile</string>
     <string name="login_message">Connect with friends and the world\n around you on Comet Chat.</string>
-    <string name="login_error_wrong_email">"Nem email címet adtál meg.\n Kérlek ellenőrizd a formátumát!\n (valaki@pelda.hu)"</string>
-    <string name="login_error_empty_email">"Nem adtál meg email címet!"</string>
-    <string name="login_error_empty_password">"Nem adtál meg jelszót!"</string>
+    <string name="login_error_wrong_email">"Nem email címet adtál meg.\n Kérlek ellenőrizd a formátumát!\n (valaki@pelda.hu)\n"</string>
+    <string name="login_error_empty_email">"Nem adtál meg email címet!\n"</string>
+    <string name="login_error_empty_password">"Nem adtál meg jelszót!\n"</string>
 
-    <string name="registration_mail_hint">what is your meail address?</string>
+    <string name="registration_mail_hint">what is your email address?</string>
     <string name="registration_password_hint">password goes here</string>
     <string name="registration_password_again_hint">…and here</string>
     <string name="tips_for_registration">Your password should contain at least one uppercase letter, and at least one number.</string>
