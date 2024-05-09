@@ -105,7 +105,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/registrationMessage"
+      app:layout_constraintTop_toBottomOf="@+id/registrationErrorLabel"
       app:layout_constraintVertical_bias="0.14999998" />
 
   <Button
@@ -131,14 +131,14 @@
       app:layout_constraintVertical_bias="0.13999999" />
 
   <TextView
-      android:id="@+id/registrationMessage"
+      android:id="@+id/registrationErrorLabel"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:maxWidth="300dp"
       android:minWidth="200dp"
-      android:text="@string/tips_for_registration"
+      android:text=""
       android:textAlignment="center"
-      android:textColor="@color/information"
+      android:textColor="@color/error"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.495"
