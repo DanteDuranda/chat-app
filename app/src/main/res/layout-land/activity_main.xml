@@ -98,7 +98,7 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
-        android:id="@+id/registrationMessage"
+        android:id="@+id/registrationErrorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

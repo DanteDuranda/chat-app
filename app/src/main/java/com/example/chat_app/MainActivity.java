@@ -3,8 +3,8 @@ package com.example.chat_app;
 import static com.example.chat_app.Validation.isValidEmail;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -21,11 +21,13 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getName();  //log tag
-
+    private static final String PREF_KEY = MainActivity.class.getPackage().toString();
+    private static final int SECRET_KEY = 99;
     private EditText email;
     private EditText password;
     private TextView errorLabel;
     private Button loginButton;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
 
         email = findViewById(R.id.registrationEmailField);
         password = findViewById(R.id.registrationPasswordField);
@@ -57,25 +61,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        if (!areInputsValid()) return;
+        String email = this.email.getText().toString();
+        String password = this.password.getText().toString();
+        if (!areInputsValid(email, password)) return;
 
-        if (!email.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
-            Log.i(LOG_TAG, "Bejelentkezett: "+email.getText().toString() + "   " + password.getText().toString()); //TODO DEBUG
-        }else{
-            Log.i(LOG_TAG,  "Hiányos kitoltes!!!!!"); //TODO DEBUG
-        }
+        //TODO
     }
 
-    private boolean areInputsValid() {
+    private boolean areInputsValid(String email, String password) {
         StringBuilder validationErrorBuilder = new StringBuilder();
         errorLabel.setText("");
-        if (email.getText().toString().isEmpty()){
-            validationErrorBuilder.append(getString(R.string.login_error_empty_email));
-        }else if(!isValidEmail(email.getText().toString())){
-            validationErrorBuilder.append(getString(R.string.login_error_wrong_email));
+        if (email.isEmpty()){
+            validationErrorBuilder.append(getString(R.string.empty_email_field));
+        }else if(!isValidEmail(email)){
+            validationErrorBuilder.append(getString(R.string.wrong_email_format));
         }
-        if (password.getText().toString().isEmpty()){
-            validationErrorBuilder.append(getString(R.string.login_error_empty_password));
+        if (password.isEmpty()){
+            validationErrorBuilder.append(getString(R.string.empty_password_field));
         }
         errorLabel.setText(validationErrorBuilder.toString());
         return validationErrorBuilder.toString().isEmpty();
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void toRegistration(View view) {
         Intent intent = new Intent(this, RegistrationActivity.class);
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
     }
 }

@@ -6,15 +6,18 @@
     <string name="login">Login</string>
     <string name="go_to_registration">Create new profile</string>
     <string name="login_message">Connect with friends and the world\n around you on Comet Chat.</string>
-    <string name="login_error_wrong_email">"Nem email címet adtál meg.\n Kérlek ellenőrizd a formátumát!\n (valaki@pelda.hu)\n"</string>
-    <string name="login_error_empty_email">"Nem adtál meg email címet!\n"</string>
-    <string name="login_error_empty_password">"Nem adtál meg jelszót!\n"</string>
+    <string name="wrong_email_format">"Nem email címet adtál meg.\n Kérlek ellenőrizd a formátumát!\n (valaki@pelda.hu)\n"</string>
+    <string name="empty_email_field">"Nem adtál meg email címet!\n"</string>
+    <string name="empty_password_field">"Nem adtál meg jelszót!\n"</string>
 
     <string name="registration_mail_hint">what is your email address?</string>
     <string name="registration_password_hint">password goes here</string>
     <string name="registration_password_again_hint">…and here</string>
-    <string name="tips_for_registration">Your password should contain at least one uppercase letter, and at least one number.</string>
+    <string name="wrong_password_format">"A jelszavadnak tartalmaznia kell legalább egy nagybetus karaktert és egy számot!\n"</string>
+    <string name="wrong_password">Your password must contain at least one uppercase letter, and at least one number.\nThe minimum length is 8 characters/</string>
     <string name="registration">Registration</string>
     <string name="registration_warning">Never share your password with anyone.</string>
     <string name="back_to_login">Login instead</string>
+    <string name="password_match_failure">A megadott jelszavak nem egyeznek!</string>
+    <string name="password_again_missing">Meg kell erositened a jelszavad!</string>
 </resources>

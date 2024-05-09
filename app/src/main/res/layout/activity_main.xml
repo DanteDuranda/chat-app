@@ -68,7 +68,6 @@
         android:id="@+id/loginErrorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/error"
@@ -122,7 +121,7 @@
         app:layout_constraintVertical_bias="0.01999998" />
 
     <TextView
-        android:id="@+id/registrationMessage"
+        android:id="@+id/registrationErrorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
