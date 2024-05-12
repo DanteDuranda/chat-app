@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Chatapp.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".komoj"
+            android:name=".Messages"
             android:exported="false"
             android:label="@string/title_activity_komoj"
             android:theme="@style/Theme.Chatapp.NoActionBar.NoActionBar" />

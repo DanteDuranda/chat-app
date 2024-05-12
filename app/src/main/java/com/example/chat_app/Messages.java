@@ -3,43 +3,45 @@ package com.example.chat_app;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
-import com.example.chat_app.databinding.ActivityLandingPageBinding;
+import com.example.chat_app.dao.UserFetcherAsyncTask;
+import com.example.chat_app.databinding.ActivityMessagesBinding;
+import com.example.chat_app.model.User;
+import com.example.chat_app.utilities.UserAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chat_app.databinding.ActivityKomojBinding;
+import com.example.chat_app.databinding.ActivityMessagesBinding;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class komoj extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Messages extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityKomojBinding binding;
+    private ActivityMessagesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        binding = ActivityKomojBinding.inflate(getLayoutInflater());
+        binding = ActivityMessagesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarKomoj.toolbar);
@@ -61,6 +63,35 @@ public class komoj extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_komoj);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersCollection = db.collection("users");
+
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_users);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        UserAdapter adapter = new UserAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
+
+
+        UserFetcherAsyncTask userFetcherAsyncTask = new UserFetcherAsyncTask(usersCollection, new UserFetcherAsyncTask.OnFetchUsersListener() {
+            @Override
+            public void onFetchSuccess(List<User> userList) {
+                // Update adapter with fetched user list
+                adapter.setUserList(userList);
+            }
+
+            @Override
+            public void onFetchFailure(Exception e) {
+                // Handle fetch failure
+                Toast.makeText(Messages.this, "Failed to fetch users: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        userFetcherAsyncTask.execute();
     }
 
     @Override
