@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.example.chat_app.R;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class RegUserData extends AppCompatActivity {
     private String selectedDate;
     TextView userDataErrorLabel;
     private boolean dateIsValid = false;
+    String emailAddress;
 
     private CollectionReference usersCollection;
 
@@ -49,6 +51,8 @@ public class RegUserData extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        emailAddress = getIntent().getStringExtra("EMAIL");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         usersCollection = db.collection("users");
@@ -98,7 +102,6 @@ public class RegUserData extends AppCompatActivity {
         if (areNameValid() && dateIsValid) {
             String name = forenameField.getText() + " " +surnameField.getText();
             saveUserDataToFirestore(name, selectedDate);
-            goToLogin();
         }else{
             userDataErrorLabel.setText(R.string.wrongNameOrDate);
         }
@@ -115,12 +118,8 @@ public class RegUserData extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    // Other activity methods...
-
-    // Method to save user data to Firestore on a background thread
     private void saveUserDataToFirestore(String name, String dateOfBirth) {
-        new SaveUserDataAsyncTask(name, dateOfBirth).execute();
+        new SaveUserDataAsyncTask(name, dateOfBirth, emailAddress).execute();
     }
 
     private void showToast(String message) {
@@ -133,42 +132,50 @@ public class RegUserData extends AppCompatActivity {
         });
     }
 
-    // AsyncTask to save user data to Firestore
     private class SaveUserDataAsyncTask extends AsyncTask<Void, Void, Void> {
-        private String name;
-        private String dateOfBirth;
+        private WeakReference<String> name;
+        private WeakReference<String> dateOfBirth;
+        private WeakReference<String> email;
 
-        public SaveUserDataAsyncTask(String name, String dateOfBirth) {
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
+        public SaveUserDataAsyncTask(String name, String dateOfBirth, String email) {
+            this.name = new WeakReference<>(name);
+            this.dateOfBirth = new WeakReference<>(dateOfBirth);
+            this.email = new WeakReference<>(emailAddress);
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            // Create a Map representing the user data
-            Map<String, Object> userData = new HashMap<>();
-            userData.put("name", name);
-            userData.put("dateOfBirth", dateOfBirth);
+            String nameValue = name.get();
+            String dateOfBirthValue = dateOfBirth.get();
+            String emailValue = email.get();
 
-            // Add the user data to Firestore
+            if (nameValue == null || dateOfBirthValue == null || emailValue == null) {
+                showToast("One of the values is null");
+                return null;
+            }
+
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("name", nameValue);
+            userData.put("dateOfBirth", dateOfBirthValue);
+            userData.put("emailAddress", emailValue);
+
             usersCollection.add(userData)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            // Document successfully added
-                            showToast("User data saved to Firestore");
+                            showToast("Success!");
                             goToLogin();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            // Handle errors
                             showToast("Error saving user data: " + e.getMessage());
                         }
                     });
             return null;
         }
+
 
         private void showToast(String message) {
             // Display toast message on the main UI thread

@@ -57,11 +57,6 @@ public class RegistrationActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "Success!");
         }
 
-        /*preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
-        if(preferences != null) {
-            Log.d(LOG_TAG, "Authenticated user!");
-        }*/
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -127,7 +122,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void succesfulRegistration() {
         Intent intent = new Intent(this, RegUserData.class);
+        String email = emailField.getText().toString();
         intent.putExtra("SECRET_KEY", SECRET_KEY);
+        intent.putExtra("EMAIL", email);
         startActivity(intent);
     }
 
