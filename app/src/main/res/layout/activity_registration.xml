@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_login"
-    tools:context=".RegistrationActivity">
+    tools:context=".actControllers.RegistrationActivity">
 
   <ImageView
       android:id="@+id/imageView"
@@ -44,7 +44,7 @@
       tools:ignore="RtlSymmetry" />
 
   <EditText
-      android:id="@+id/registrationPasswordField"
+      android:id="@+id/registrationPassowrdField"
       android:layout_width="288dp"
       android:layout_height="51dp"
       android:autofillHints="emailAddress"
@@ -83,12 +83,12 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.495"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/registrationPasswordField"
+      app:layout_constraintTop_toBottomOf="@+id/registrationPassowrdField"
       app:layout_constraintVertical_bias="0.04000002"
       tools:ignore="RtlSymmetry" />
 
   <Button
-      android:id="@+id/loginButton"
+      android:id="@+id/regrButton"
       style="@style/Widget.MaterialComponents.Button"
       android:layout_width="159dp"
       android:layout_height="66dp"
@@ -127,7 +127,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/loginButton"
+      app:layout_constraintTop_toBottomOf="@+id/regrButton"
       app:layout_constraintVertical_bias="0.13999999" />
 
   <TextView
