@@ -64,39 +64,10 @@ public class Messages extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference usersCollection = db.collection("users");
-
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_users);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        UserAdapter adapter = new UserAdapter(new ArrayList<>());
-        recyclerView.setAdapter(adapter);
-
-
-        UserFetcherAsyncTask userFetcherAsyncTask = new UserFetcherAsyncTask(usersCollection, new UserFetcherAsyncTask.OnFetchUsersListener() {
-            @Override
-            public void onFetchSuccess(List<User> userList) {
-                // Update adapter with fetched user list
-                adapter.setUserList(userList);
-            }
-
-            @Override
-            public void onFetchFailure(Exception e) {
-                // Handle fetch failure
-                Toast.makeText(Messages.this, "Failed to fetch users: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        userFetcherAsyncTask.execute();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.komoj, menu);
         return true;
     }

@@ -5,12 +5,16 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    android:background="@drawable/background_login"
-    android:name=".Landing"
+    android:fitsSystemWindows="true"
     android:theme="@style/Theme.AppCompat"
-    tools:openDrawer="start"
-    >
+    android:background="@drawable/background_login"
+    tools:openDrawer="start">
+
+    <include
+        android:id="@+id/app_bar_komoj"
+        layout="@layout/app_bar_komoj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -18,6 +22,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_landing_page"
-        app:menu="@menu/activity_landing_drawer" />
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

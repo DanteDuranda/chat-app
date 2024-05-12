@@ -1,16 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    android:background="#FBFAFA"
+    android:clickable="true"
+    android:hapticFeedbackEnabled="true"
+    android:orientation="vertical"
     android:padding="8dp"
-    android:id="@+id/main"
-    android:orientation="vertical">
+    app:cardCornerRadius="10dp"
+    android:focusable="true">
 
 
     <!-- Latest sent message -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:cardCornerRadius="10dp">
 
         <!-- User's picture holder -->
         <ImageView
@@ -18,7 +29,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/chat_head" />
+            android:src="@drawable/chat_head"
+            />
 
         <!-- User's name -->
         <TextView
@@ -38,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Latest message"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
 
 </LinearLayout>
