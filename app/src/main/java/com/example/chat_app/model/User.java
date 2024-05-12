@@ -1,7 +1,6 @@
 package com.example.chat_app.model;
 
 public class User {
-    private int id;
     private String email;
     private String name;
     private String dateOfBirth;
@@ -9,8 +8,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String email, String name, String dateOfBirth) {
-        this.id = id;
+    public User(String email, String name, String dateOfBirth) {
         this.email = email;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -19,19 +17,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEmail() {

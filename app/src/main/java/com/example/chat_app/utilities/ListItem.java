@@ -1,4 +1,4 @@
-package com.example.chat_app;
+package com.example.chat_app.utilities;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.chat_app.R;
 
 public class ListItem extends AppCompatActivity {
 

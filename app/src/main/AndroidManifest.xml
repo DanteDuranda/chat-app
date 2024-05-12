@@ -13,16 +13,17 @@
         android:theme="@style/Theme.Chatapp.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Messages"
+            android:name=".actControllers.ChatWindow"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".actControllers.Home"
             android:exported="false"
             android:label="@string/title_activity_komoj"
             android:theme="@style/Theme.Chatapp.NoActionBar.NoActionBar" />
-
         <activity
-            android:name=".ListItem"
-            android:exported="false" />
-        <activity
-            android:name=".actControllers.LandingPage"
+            android:name=".utilities.ListItem"
             android:exported="false" />
         <activity
             android:name=".actControllers.RegUserData"

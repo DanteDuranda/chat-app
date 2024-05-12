@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_friends" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_groups"
         android:name="com.example.chat_app.ui.gallery.GroupsFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_groups" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.chat_app.ui.slideshow.SettingsFragment"
+        android:name="com.example.chat_app.ui.chat.ChatFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_settings" />
 </navigation>

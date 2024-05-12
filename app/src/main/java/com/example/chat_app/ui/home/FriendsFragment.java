@@ -39,6 +39,12 @@ public class FriendsFragment extends Fragment {
 
         fetchUsers();
 
+        adapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(User user) {
+                //TODO
+            }
+        });
         return root;
     }
 
@@ -49,13 +55,11 @@ public class FriendsFragment extends Fragment {
         UserFetcherAsyncTask userFetcherAsyncTask = new UserFetcherAsyncTask(usersCollection, new UserFetcherAsyncTask.OnFetchUsersListener() {
             @Override
             public void onFetchSuccess(List<User> userList) {
-                // Update adapter with fetched user list
                 adapter.setUserList(userList);
             }
 
             @Override
             public void onFetchFailure(Exception e) {
-                // Handle fetch failure
                 Toast.makeText(getContext(), "Failed to fetch users: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

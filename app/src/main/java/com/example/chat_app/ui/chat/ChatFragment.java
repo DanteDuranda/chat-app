@@ -1,4 +1,4 @@
-package com.example.chat_app.ui.slideshow;
+package com.example.chat_app.ui.chat;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chat_app.databinding.FragmentSettingsBinding;
 
-public class SettingsFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SettingsViewModel settingsViewModel =
-                new ViewModelProvider(this).get(SettingsViewModel.class);
+        ChatViewModel chatViewModel =
+                new ViewModelProvider(this).get(ChatViewModel.class);
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        chatViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
 
     }

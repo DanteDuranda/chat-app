@@ -1,5 +1,9 @@
 package com.example.chat_app.utilities;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chat_app.R;
+import com.example.chat_app.actControllers.ChatWindow;
+import com.example.chat_app.actControllers.RegistrationActivity;
 import com.example.chat_app.model.User;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
-    private List<User> userList;
-
+    private static List<User> userList;
+    private static OnItemClickListener onItemClickListener;
     public UserAdapter(List<User> userList) {
-        // Inside your activity or fragment
         this.userList = userList;
     }
 
@@ -33,7 +38,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User user = userList.get(position);
         holder.textViewUsername.setText(user.getName());
-        // Bind other user information as needed
+        holder.textViewEmail.setText(user.getEmail());
     }
 
     @Override
@@ -43,15 +48,43 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         TextView textViewUsername;
+        TextView textViewEmail;
+        Context context;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewUsername = itemView.findViewById(R.id.user_name);
+            textViewEmail = itemView.findViewById(R.id.latest_message);
+            context = itemView.getContext();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            System.out.println(userList.get(position).getName());
+                        }
+
+                        Intent intent = new Intent(context, ChatWindow.class);
+                        intent.putExtra("EMAIL", userList.get(position).getEmail());
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
-        notifyDataSetChanged(); // Notify RecyclerView of data change
+        notifyDataSetChanged();
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(User user);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
 }

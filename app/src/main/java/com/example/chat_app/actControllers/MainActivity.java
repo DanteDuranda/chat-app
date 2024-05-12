@@ -21,7 +21,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.chat_app.R;
-import com.example.chat_app.Messages;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         String password = this.password.getText().toString();
         if (!areInputsValid(email, password)) return;
 
-        Intent intent = new Intent(this, Messages.class);
+        Intent intent = new Intent(this, Home.class);
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

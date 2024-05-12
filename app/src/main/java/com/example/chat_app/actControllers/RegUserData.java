@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.chat_app.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -77,7 +78,7 @@ public class RegUserData extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDayOfMonth) {
-                                if (selectedYear < 1920){
+                                if (selectedYear < 1920 || selectedYear > 2005){
                                     dateOfBirthButton.setText(R.string.invalid_year);
                                 }else {
                                     dateIsValid = true;
@@ -119,7 +120,7 @@ public class RegUserData extends AppCompatActivity {
     }
 
     private void saveUserDataToFirestore(String name, String dateOfBirth) {
-        new SaveUserDataAsyncTask(name, dateOfBirth, emailAddress).execute();
+        new SaveUserDataAsyncTask(new User(emailAddress, name, dateOfBirth)).execute();
     }
 
     private void showToast(String message) {
@@ -136,30 +137,17 @@ public class RegUserData extends AppCompatActivity {
         private WeakReference<String> name;
         private WeakReference<String> dateOfBirth;
         private WeakReference<String> email;
+        private WeakReference<User> newUser;
 
-        public SaveUserDataAsyncTask(String name, String dateOfBirth, String email) {
-            this.name = new WeakReference<>(name);
-            this.dateOfBirth = new WeakReference<>(dateOfBirth);
-            this.email = new WeakReference<>(emailAddress);
+        public SaveUserDataAsyncTask(User user) {
+            this.newUser = new WeakReference<>(user);
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String nameValue = name.get();
-            String dateOfBirthValue = dateOfBirth.get();
-            String emailValue = email.get();
+            User user = newUser.get();
 
-            if (nameValue == null || dateOfBirthValue == null || emailValue == null) {
-                showToast("One of the values is null");
-                return null;
-            }
-
-            Map<String, Object> userData = new HashMap<>();
-            userData.put("name", nameValue);
-            userData.put("dateOfBirth", dateOfBirthValue);
-            userData.put("emailAddress", emailValue);
-
-            usersCollection.add(userData)
+            usersCollection.add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
