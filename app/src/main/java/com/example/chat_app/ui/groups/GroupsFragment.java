@@ -1,4 +1,4 @@
-package com.example.chat_app.ui.gallery;
+package com.example.chat_app.ui.groups;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

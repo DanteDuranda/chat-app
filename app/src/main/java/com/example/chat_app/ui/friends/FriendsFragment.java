@@ -1,4 +1,4 @@
-package com.example.chat_app.ui.home;
+package com.example.chat_app.ui.friends;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,6 +45,7 @@ public class FriendsFragment extends Fragment {
                 //TODO
             }
         });
+
         return root;
     }
 

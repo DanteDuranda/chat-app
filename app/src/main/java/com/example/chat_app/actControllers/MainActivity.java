@@ -72,6 +72,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(this, Home.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+
     public void login(View view) {
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();

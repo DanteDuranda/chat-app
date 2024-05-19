@@ -11,20 +11,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerMessages"
-        android:layout_width="397dp"
-        android:layout_height="590dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="480dp"
+        android:layout_height="221dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageField"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.76" />
 
     <EditText
         android:id="@+id/messageField"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="479dp"
+        android:layout_height="108dp"
         android:background="?android:attr/windowBackground"
         android:ems="10"
         android:gravity="start"

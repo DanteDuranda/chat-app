@@ -1,11 +1,15 @@
 package com.example.chat_app.dao;
 
 import android.os.AsyncTask;
+import android.widget.TextView;
 
+import com.example.chat_app.R;
+import com.example.chat_app.databinding.NavHeaderBinding;
 import com.example.chat_app.model.User;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
@@ -14,18 +18,21 @@ import java.util.List;
 public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
 
     private CollectionReference usersCollection;
+
+    private NavHeaderBinding navBinding;
     private OnFetchUsersListener listener;
     private Exception exception;
 
     public UserFetcherAsyncTask(CollectionReference usersCollection, OnFetchUsersListener listener) {
         this.usersCollection = usersCollection;
         this.listener = listener;
+
     }
 
     @Override
     protected List<User> doInBackground(Void... voids) {
         try {
-            Task<QuerySnapshot> task = usersCollection.get();
+            Task<QuerySnapshot> task = usersCollection.orderBy("name", Query.Direction.ASCENDING).get();
             Tasks.await(task);
 
             if (task.isSuccessful()) {
@@ -43,6 +50,7 @@ public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
             return null;
         }
     }
+
 
 
     @Override

@@ -7,21 +7,18 @@
     android:layout_marginTop="5dp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="5dp"
-    android:background="#FBFAFA"
+    android:background="@drawable/glass_background"
     android:clickable="true"
     android:hapticFeedbackEnabled="true"
     android:orientation="vertical"
     android:padding="8dp"
-    app:cardCornerRadius="10dp"
     android:focusable="true">
-
 
     <!-- Latest sent message -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:cardCornerRadius="10dp">
+        android:orientation="horizontal">
 
         <!-- User's picture holder -->
         <ImageView
@@ -29,8 +26,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/chat_head"
-            />
+            android:src="@drawable/chat_head" />
 
         <!-- User's name -->
         <TextView
@@ -41,7 +37,6 @@
             android:text="User Name"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
-
     </LinearLayout>
 
     <TextView
@@ -50,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Latest message"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:textSize="14sp" />
 
 </LinearLayout>

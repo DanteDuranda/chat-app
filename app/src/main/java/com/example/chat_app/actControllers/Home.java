@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chat_app.R;
 import com.example.chat_app.databinding.ActivityMessagesBinding;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.chat_app.databinding.NavHeaderBinding;
+import com.example.chat_app.model.User;
+import com.example.chat_app.ui.header.NavHeader;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.activity.EdgeToEdge;
 import androidx.navigation.NavController;
@@ -22,6 +30,11 @@ public class Home extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMessagesBinding binding;
+    private NavHeaderBinding navBinding;
+    private NavHeader navHeader;
+
+    private TextView emailLabel;
+    private TextView nameLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +45,21 @@ public class Home extends AppCompatActivity {
         binding = ActivityMessagesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        View navHeaderView = binding.navView.getHeaderView(0);
+        this.nameLabel = navHeaderView.findViewById(R.id.nav_header_name);
+        this.emailLabel = navHeaderView.findViewById(R.id.textView);
+        getUserName();
         setSupportActionBar(binding.appBarKomoj.toolbar);
-        binding.appBarKomoj.fab.setOnClickListener(new View.OnClickListener() {
+        binding.appBarKomoj.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
+                FirebaseAuth.getInstance().signOut();
+
+                Toast.makeText(Home.this, "Logout successful", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(Home.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -53,6 +74,7 @@ public class Home extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.komoj, menu);
@@ -66,4 +88,32 @@ public class Home extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    private void getUserName(){
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String currentUserEmail = currentUser.getEmail();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            db.collection("users")
+                    .whereEqualTo("email", currentUserEmail)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                User user = document.toObject(User.class);
+
+                                if (user != null) {
+                                    this.emailLabel.setText(user.getEmail());
+                                    this.nameLabel.setText(user.getName());
+                                    return; // Exit the loop after setting data to TextViews
+                                }
+                            }
+                            nameLabel.setText("User not found");
+                        } else {
+                            nameLabel.setText("Unsuccessful");
+                        }
+                    });
+        }
+    }
 }

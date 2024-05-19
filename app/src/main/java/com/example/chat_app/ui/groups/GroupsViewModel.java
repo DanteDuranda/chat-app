@@ -1,4 +1,4 @@
-package com.example.chat_app.ui.gallery;
+package com.example.chat_app.ui.groups;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class GroupsViewModel extends ViewModel {
 
     public GroupsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is groups fragment");
     }
 
     public LiveData<String> getText() {

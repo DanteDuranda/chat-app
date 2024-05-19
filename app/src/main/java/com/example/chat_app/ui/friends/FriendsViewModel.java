@@ -1,4 +1,4 @@
-package com.example.chat_app.ui.home;
+package com.example.chat_app.ui.friends;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class FriendsViewModel extends ViewModel {
 
     public FriendsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is friends fragment");
     }
 
     public LiveData<String> getText() {

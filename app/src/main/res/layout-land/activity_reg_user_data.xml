@@ -76,14 +76,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="195dp"
-        android:layout_height="200dp"
+        android:layout_width="119dp"
+        android:layout_height="79dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintVertical_bias="0.989"
         app:srcCompat="@drawable/logover3" />
 
     <Button
