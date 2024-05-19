@@ -94,6 +94,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "User created successfully");
                     succesfulRegistration();
                 }else{
+                    registrationErrorLabel.setText("Already registered email.");
                     Log.d(LOG_TAG, "Error during the registration process!");
                 }
             }
