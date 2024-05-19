@@ -11,16 +11,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerMessages"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-197dp" />
+        android:layout_width="397dp"
+        android:layout_height="530dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
 
     <EditText
         android:id="@+id/messageField"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="30dp"
         android:background="?android:attr/windowBackground"
         android:ems="10"
         android:gravity="start"
@@ -31,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerMessages"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

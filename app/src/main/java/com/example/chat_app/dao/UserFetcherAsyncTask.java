@@ -25,9 +25,8 @@ public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
     @Override
     protected List<User> doInBackground(Void... voids) {
         try {
-            // Fetch user data asynchronously
             Task<QuerySnapshot> task = usersCollection.get();
-            Tasks.await(task); // Wait for the task to complete
+            Tasks.await(task);
 
             if (task.isSuccessful()) {
                 List<User> userList = new ArrayList<>();
@@ -40,7 +39,6 @@ public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
                 throw new Exception("Failed to fetch users: " + task.getException());
             }
         } catch (Exception e) {
-            // Store the exception for later retrieval
             exception = e;
             return null;
         }
@@ -50,15 +48,12 @@ public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
     @Override
     protected void onPostExecute(List<User> userList) {
         if (userList != null) {
-            // Notify listener with the fetched user list
             listener.onFetchSuccess(userList);
         } else {
-            // Notify listener about failure
             listener.onFetchFailure(exception);
         }
     }
 
-    // Interface for callbacks
     public interface OnFetchUsersListener {
         void onFetchSuccess(List<User> userList);
         void onFetchFailure(Exception e);
