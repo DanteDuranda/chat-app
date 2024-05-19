@@ -8,12 +8,14 @@ import com.example.chat_app.databinding.NavHeaderBinding;
 import com.example.chat_app.model.User;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
 
@@ -39,7 +41,9 @@ public class UserFetcherAsyncTask extends AsyncTask<Void, Void, List<User>> {
                 List<User> userList = new ArrayList<>();
                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                     User user = documentSnapshot.toObject(User.class);
-                    userList.add(user);
+                    if (!user.getEmail().equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())){
+                        userList.add(user);
+                    }
                 }
                 return userList;
             } else {

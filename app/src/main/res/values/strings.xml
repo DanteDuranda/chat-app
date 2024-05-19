@@ -42,11 +42,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_friends">Friends</string>
+    <string name="menu_friends">People</string>
     <string name="menu_groups">Groups</string>
     <string name="menu_settings">Settings</string>
 
-    <string name="menu_home">Friends</string>
+    <string name="menu_home">People</string>
     <string name="menu_gallery">Groups</string>
     <string name="menu_slideshow">Settings</string>
 

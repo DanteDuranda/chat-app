@@ -4,12 +4,16 @@ import static com.example.chat_app.utilities.Validator.Validation.isValidEmail;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +74,31 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // Load animation
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
+
+        // Find the logo ImageView
+        ImageView logoImageView = findViewById(R.id.imageView);
+
+        // Apply animation to the logo ImageView
+        if(!(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)) {
+            logoImageView.startAnimation(animation);
+        }
+
+        Animation popAnimation = AnimationUtils.loadAnimation(this, R.anim.pop_animation);
+
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    v.startAnimation(popAnimation);
+                }
+
+                login(v);
+            }
+        });
     }
 
     @Override
@@ -83,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
-
 
     public void login(View view) {
         String email = this.email.getText().toString();
